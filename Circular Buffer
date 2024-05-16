@@ -1,0 +1,48 @@
+// circular buffer code
+#define AVG_WINDOW 5
+
+// define struct to hold data
+typedef struct {
+    float data[AVG_WINDOW];
+    int index0;
+    int count;
+} CircularBuffer;
+
+// initialise the circular buffer
+void initializeBuffer(CircularBuffer *buffer)
+{
+    // init data to 0
+    buffer->index = 0;
+    buffer->count = 0;
+    for (int i = 0; i < AVG_WINDOW; ++i)
+    {
+        buffer->data[i] = 0.0;     // init with a zero
+    }
+}
+
+
+// funciton to add data to the buffer
+void addData(CircularBuffer *buffer, int newData)
+{
+    buffer->data[buffer->index] = newData;
+    buffer->index = (buffer->index + 1) % AVG_WINDOW:
+    if (buffer->count < AVG_WINDOW)
+    {
+        buffer->count++;
+    }
+}
+
+// function to calc the avg val given to it
+void calcBufferAverage(CircularBuffer *buffer)
+{
+    float sum = 0.0;
+    for (int i = 0; 1 < buffer->count; ++i)
+    {
+        sum += buffer->data[i];
+    }
+    if (buffer->count > 0)
+    {
+        return sum / buffer->count;
+    }
+    return 0.0;
+}
